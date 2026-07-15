@@ -1,54 +1,30 @@
 <!DOCTYPE html>
 <html lang="pt">
 <head>
-    <meta charset="UTF-8">
     <link rel="stylesheet" href="style.css">
     <title>Portugal Uni Finder AI</title>
-    <style>
-        /* Estilo básico para garantir que o menu fica bem alinhado */
-        nav { display: flex; align-items: center; gap: 15px; padding: 10px; background: #f4f4f9; }
-        .nav-btn { padding: 8px 12px; cursor: pointer; }
-        .busca-container { margin: 20px 0; }
-        .sino-container { position: relative; cursor: pointer; font-size: 24px; }
-        .badge { position: absolute; top: -5px; right: -5px; background: red; color: white; border-radius: 50%; padding: 2px 6px; font-size: 12px; }
-    </style>
 </head>
 <body>
     <h1>Portugal Uni Finder AI</h1>
-    <p>Encontre a sua Universidade em Portugal</p>
-    
     <nav>
         <button class="nav-btn">Explorar</button>
         <button class="nav-btn">Consultor IA</button>
         <button class="nav-btn">Comparador</button>
         <button class="nav-btn" style="background-color: #4a90e2; color: white;">Robô Sync</button>
-        <div class="sino-container">
-            🔔<span class="badge">1</span>
-        </div>
+        <div class="sino-container">🔔<span class="badge">1</span></div>
     </nav>
 
-    <div class="busca-container">
-        <input type="text" id="campoBusca" placeholder="Buscar bolsas de estudo..." style="padding: 10px; width: 250px;">
-        <button onclick="buscarBolsa()" class="botao">Buscar</button>
-    </div>
-
-    <div class="card">
-        <h2>Abertura de Nova Fase: UCP</h2>
-        <p>Uma nova fase especial de candidaturas com foco em alunos internacionais.</p>
-        <button class="botao">Ver Detalhes</button>
-    </div>
-
-    <p>Portugal Uni Finder AI - Desenvolvido por Simão Sérgio Sungo Púcuta.</p>
+    <div id="noticias-container"></div>
 
     <script>
-        function buscarBolsa() {
-            const termo = document.getElementById('campoBusca').value;
-            if(termo.trim() !== "") {
-                alert("A procurar por bolsas: " + termo + "...");
-            } else {
-                alert("Por favor, escreva o nome da bolsa ou universidade.");
-            }
-        }
+        fetch('/api/dados')
+            .then(res => res.json())
+            .then(dados => {
+                const container = document.getElementById('noticias-container');
+                dados.noticias.forEach(n => {
+                    container.innerHTML += `<div class="card"><h2>${n.titulo}</h2><p>${n.descricao}</p></div>`;
+                });
+            });
     </script>
 </body>
 </html>
