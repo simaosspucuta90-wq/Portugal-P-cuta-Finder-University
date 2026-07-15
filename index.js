@@ -10,14 +10,6 @@ app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, 'index.html'));
 });
 
-app.get('/contacto', (req, res) => {
-    res.sendFile(path.join(__dirname, 'contacto.html'));
-});
-
-app.get('/universidades', (req, res) => {
-    res.sendFile(path.join(__dirname, 'universidades.html'));
-});
-
 app.get('/formulario', (req, res) => {
     res.sendFile(path.join(__dirname, 'formulario.html'));
 });
@@ -27,18 +19,20 @@ app.post('/enviar-formulario', (req, res) => {
     res.send('<h1>Formulário recebido!</h1><a href="/">Voltar</a>');
 });
 
-app.listen(port, () => {
-    console.log(`Servidor a correr na porta ${port}`);
-});
+// Rotas do Admin
 app.get('/admin', (req, res) => {
     res.sendFile(path.join(__dirname, 'login.html'));
 });
 
 app.post('/login', (req, res) => {
     const { password } = req.body;
-    if (password === "Simão123") { // Podes mudar a senha aqui
-        res.send('<h1>Bem-vindo, Admin!</h1><a href="/editar-conteudo">Editar Notícias</a>');
+    if (password === "Simão123") {
+        res.send('<h1>Bem-vindo, Admin!</h1>');
     } else {
         res.send('<h1>Senha incorreta!</h1><a href="/admin">Tentar novamente</a>');
     }
+});
+
+app.listen(port, () => {
+    console.log(`Servidor a correr na porta ${port}`);
 });
