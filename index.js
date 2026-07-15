@@ -16,3 +16,6 @@ app.listen(port, () => {
 app.get('/contacto', (req, res) => {
     res.sendFile(path.join(__dirname, 'contacto.html'));
 });
+app.get('/universidades', (req, res) => {
+    res.sendFile(path.join(__dirname, 'universidades.html'));
+});
