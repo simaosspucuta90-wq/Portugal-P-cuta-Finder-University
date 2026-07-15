@@ -30,3 +30,15 @@ app.post('/enviar-formulario', (req, res) => {
 app.listen(port, () => {
     console.log(`Servidor a correr na porta ${port}`);
 });
+app.get('/admin', (req, res) => {
+    res.sendFile(path.join(__dirname, 'login.html'));
+});
+
+app.post('/login', (req, res) => {
+    const { password } = req.body;
+    if (password === "Simão123") { // Podes mudar a senha aqui
+        res.send('<h1>Bem-vindo, Admin!</h1><a href="/editar-conteudo">Editar Notícias</a>');
+    } else {
+        res.send('<h1>Senha incorreta!</h1><a href="/admin">Tentar novamente</a>');
+    }
+});
