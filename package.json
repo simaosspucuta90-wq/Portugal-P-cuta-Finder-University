@@ -1,12 +1,12 @@
-{
-  "name": "portugal-finder",
-  "version": "1.0.0",
-  "main": "index.js",
-  "scripts": {
-    "start": "node index.js"
-  },
-  "dependencies": {
-    "@google/generative-ai": "^0.1.0",
-    "express": "^4.18.2"
-  }
-}
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <title>Portugal Finder</title>
+</head>
+<body>
+    <h1>Bem-vindo ao Portugal Finder</h1>
+    <p>Plataforma de apoio ao estudante internacional em Portugal.</p>
+</body>
+</html>
+
