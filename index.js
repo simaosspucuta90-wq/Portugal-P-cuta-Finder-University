@@ -13,3 +13,6 @@ app.get('/', (req, res) => {
 app.listen(port, () => {
     console.log(`Servidor a correr na porta ${port}`);
 });
+app.get('/contacto', (req, res) => {
+    res.sendFile(path.join(__dirname, 'contacto.html'));
+});
