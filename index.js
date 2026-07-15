@@ -30,3 +30,4 @@ app.post('/enviar-formulario', (req, res) => {
 app.listen(port, () => {
     console.log(`Servidor a correr na porta ${port}`);
 });
+<a href="/formulario" class="botao">Registar como Estudante</a>
