@@ -1,13 +1,25 @@
 <!DOCTYPE html>
 <html lang="pt">
+<head><meta charset="UTF-8"><title>Painel Admin</title></head>
 <body>
-    <h1>Painel Admin</h1>
+    <h1>Painel Admin - Portugal Uni Finder</h1>
     <form action="/adicionar-noticia" method="POST">
         <input name="titulo" placeholder="Nome da Univ/Curso" required><br>
-        <textarea name="descricao" placeholder="Detalhes" required></textarea><br>
-        <input name="propina" placeholder="Propina (€)" type="number"><br>
-        <input name="tempo_visto" placeholder="Tempo espera visto"><br>
+        <textarea name="descricao" placeholder="Detalhes (UCI, Vagas, etc)" required></textarea><br>
+        <input name="propina" placeholder="Valor da Propina (€)" type="number" required><br>
+        <input name="tempo_visto" placeholder="Tempo de espera visto" required><br>
         <button type="submit">Publicar no Site</button>
     </form>
+    <hr>
+    <h3>Robô Sync (Automação)</h3>
+    <button onclick="iniciarBusca()" style="background: blue; color: white; padding: 15px; border: none; cursor: pointer;">
+        🔍 Iniciar Busca Automática de Vagas
+    </button>
+    <script>
+        function iniciarBusca() {
+            alert("O Robô Sync foi ativado! A analisar novos editais e bolsas...");
+            // Integração futura com o motor de busca
+        }
+    </script>
 </body>
 </html>
