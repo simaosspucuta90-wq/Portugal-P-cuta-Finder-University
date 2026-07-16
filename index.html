@@ -1,30 +1,42 @@
 <!DOCTYPE html>
 <html lang="pt">
 <head>
-    <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
     <title>Portugal Uni Finder AI</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .header-container { text-align: center; margin: 20px 0; }
+        .logo { max-width: 150px; height: auto; border-radius: 8px; }
+        nav { display: flex; justify-content: center; gap: 10px; margin-bottom: 20px; }
+        .card { background: #161b22; padding: 15px; border-radius: 10px; margin: 10px; color: white; border: 1px solid #30363d; }
+        .btn { display: block; background: #25d366; color: white; padding: 10px; text-align: center; text-decoration: none; border-radius: 5px; margin-top: 10px; font-weight: bold; }
+    </style>
 </head>
 <body>
-    <h1>Portugal Uni Finder AI</h1>
+
+    <!-- Cabeçalho com a Imagem -->
+    <div class="header-container">
+        <img src="logo.png" alt="Logo SJ Travel" class="logo">
+        <h1>Portugal Uni Finder AI</h1>
+    </div>
+
     <nav>
-        <button class="nav-btn">Explorar</button>
-        <button class="nav-btn">Consultor IA</button>
-        <button class="nav-btn">Comparador</button>
-        <button class="nav-btn" style="background-color: #4a90e2; color: white;">Robô Sync</button>
-        <div class="sino-container">🔔<span class="badge">1</span></div>
+        <button onclick="window.location.href='/'">Explorar</button>
+        <button onclick="window.location.href='/contacto.html'">SJ Travel</button>
     </nav>
 
-    <div id="noticias-container"></div>
+    <div id="container"></div>
 
     <script>
-        fetch('/api/dados')
-            .then(res => res.json())
-            .then(dados => {
-                const container = document.getElementById('noticias-container');
-                dados.noticias.forEach(n => {
-                    container.innerHTML += `<div class="card"><h2>${n.titulo}</h2><p>${n.descricao}</p></div>`;
-                });
-            });
+        fetch('/api/dados').then(r => r.json()).then(d => {
+            document.getElementById('container').innerHTML = d.noticias.map(n => `
+                <div class="card">
+                    <h2>${n.titulo}</h2>
+                    <p>${n.descricao}</p>
+                    <p>Propina: <b>${n.propina}€</b> | Visto: ${n.tempo_visto}</p>
+                    <a href="https://wa.me/244976195484" class="btn">Assistência SJ Travel</a>
+                </div>`).join('');
+        });
     </script>
 </body>
 </html>
