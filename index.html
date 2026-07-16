@@ -6,44 +6,39 @@
     <style>
         body { font-family: sans-serif; background: #f4f7f6; padding: 20px; }
         .header-container { text-align: center; margin-bottom: 20px; }
-        .logo { max-width: 150px; border-radius: 8px; }
         .card { background: white; border: 1px solid #e0e0e0; border-radius: 12px; padding: 20px; margin-bottom: 20px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
-        .stats { display: flex; justify-content: space-between; margin: 20px 0; border-top: 1px solid #eee; border-bottom: 1px solid #eee; padding: 10px 0; }
+        .stats { display: flex; justify-content: space-between; margin: 15px 0; border-top: 1px solid #eee; border-bottom: 1px solid #eee; padding: 10px 0; }
         .stat-box { text-align: center; font-size: 0.8em; }
         .badge { background: #f0f0ff; color: #5c5cff; padding: 4px 8px; border-radius: 4px; font-size: 0.8em; font-weight: bold; }
-        .btn-detalhes { background: #1a2b4c; color: white; padding: 10px; border-radius: 6px; text-decoration: none; display: block; text-align: center; font-weight: bold; margin-top: 10px; }
+        .btn-detalhes { background: #1a2b4c; color: white; padding: 10px; border-radius: 6px; text-decoration: none; display: block; text-align: center; font-weight: bold; }
         .filtro-box { background: white; padding: 15px; border-radius: 12px; margin-bottom: 20px; border: 1px solid #e0e0e0; }
     </style>
 </head>
 <body>
     <div class="header-container">
-        <img src="logo.png" alt="Logo" class="logo">
         <h1>Portugal Uni Finder AI</h1>
     </div>
 
-    <!-- Filtros Avançados -->
+    <!-- Filtros -->
     <div class="filtro-box">
         <h3>🔍 FILTROS AVANÇADOS</h3>
-        <label>CIDADE EM PORTUGAL</label>
-        <select style="width: 100%; padding: 8px; margin-bottom: 10px;"><option>Todas</option></select>
-        
-        <label>PROPINA ANUAL (Até <span id="valPropina">8000</span>€)</label>
+        <label>PROPINA MÁXIMA (<span id="valPropina">8000</span>€)</label>
         <input type="range" min="2000" max="10000" value="8000" style="width: 100%;" oninput="document.getElementById('valPropina').innerText = this.value">
-        
-        <div style="margin-top: 10px;">
-            <input type="checkbox"> Facilidades CPLP<br>
-            <input type="checkbox"> Residência Universitária<br>
-            <input type="checkbox"> Unidades Curriculares Isoladas
-        </div>
     </div>
 
     <div id="container"></div>
 
     <script>
-        fetch('/api/dados').then(r => r.json()).then(d => {
-            document.getElementById('container').innerHTML = d.noticias.map(n => `
+        // Dados de exemplo para o site não ficar vazio
+        const dadosExemplo = [
+            { titulo: "Universidade do Porto", tipo: "Pública", propina: "3500", resposta: "20 dias", taxa: "100", score: "75" },
+            { titulo: "ISAG - Business School", tipo: "Privada", propina: "3450", resposta: "7 dias", taxa: "120", score: "90" }
+        ];
+
+        function renderizar(lista) {
+            document.getElementById('container').innerHTML = lista.map(n => `
                 <div class="card">
-                    <span class="badge">${n.tipo || 'Ensino'}</span>
+                    <span class="badge">${n.tipo}</span>
                     <h2>${n.titulo}</h2>
                     <div class="stats">
                         <div class="stat-box"><strong>PROPINA</strong><br>${n.propina}€</div>
@@ -53,7 +48,8 @@
                     <div style="text-align: right; font-weight: bold;">Score: ${n.score}/100</div>
                     <a href="https://wa.me/244976195484" class="btn-detalhes">Assistência SJ Travel ></a>
                 </div>`).join('');
-        });
+        }
+        renderizar(dadosExemplo);
     </script>
 </body>
 </html>
