@@ -9,10 +9,10 @@
         .logo { max-width: 150px; border-radius: 8px; }
         .card { background: white; border: 1px solid #e0e0e0; border-radius: 12px; padding: 20px; margin-bottom: 20px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
         .stats { display: flex; justify-content: space-between; margin: 20px 0; border-top: 1px solid #eee; border-bottom: 1px solid #eee; padding: 10px 0; }
-        .stat-box { text-align: center; font-size: 0.9em; }
+        .stat-box { text-align: center; font-size: 0.8em; }
         .badge { background: #f0f0ff; color: #5c5cff; padding: 4px 8px; border-radius: 4px; font-size: 0.8em; font-weight: bold; }
-        .btn-detalhes { background: #1a2b4c; color: white; padding: 10px; border-radius: 6px; text-decoration: none; display: block; text-align: center; font-weight: bold; }
-        nav { display: flex; justify-content: center; gap: 10px; margin-bottom: 20px; }
+        .btn-detalhes { background: #1a2b4c; color: white; padding: 10px; border-radius: 6px; text-decoration: none; display: block; text-align: center; font-weight: bold; margin-top: 10px; }
+        .filtro-box { background: white; padding: 15px; border-radius: 12px; margin-bottom: 20px; border: 1px solid #e0e0e0; }
     </style>
 </head>
 <body>
@@ -21,26 +21,27 @@
         <h1>Portugal Uni Finder AI</h1>
     </div>
 
-    <nav>
-        <button onclick="window.location.href='/'">Explorar</button>
-        <select id="filtroPreco" onchange="ordenarPorPreco()">
-            <option value="todos">Ordenar por Preço</option>
-            <option value="baratas">Propinas mais baratas</option>
-        </select>
-        <button onclick="window.location.href='/contacto.html'">SJ Travel</button>
-    </nav>
+    <!-- Filtros Avançados -->
+    <div class="filtro-box">
+        <h3>🔍 FILTROS AVANÇADOS</h3>
+        <label>CIDADE EM PORTUGAL</label>
+        <select style="width: 100%; padding: 8px; margin-bottom: 10px;"><option>Todas</option></select>
+        
+        <label>PROPINA ANUAL (Até <span id="valPropina">8000</span>€)</label>
+        <input type="range" min="2000" max="10000" value="8000" style="width: 100%;" oninput="document.getElementById('valPropina').innerText = this.value">
+        
+        <div style="margin-top: 10px;">
+            <input type="checkbox"> Facilidades CPLP<br>
+            <input type="checkbox"> Residência Universitária<br>
+            <input type="checkbox"> Unidades Curriculares Isoladas
+        </div>
+    </div>
 
     <div id="container"></div>
 
     <script>
-        let dadosGlobais = [];
         fetch('/api/dados').then(r => r.json()).then(d => {
-            dadosGlobais = d.noticias;
-            renderizar(dadosGlobais);
-        });
-
-        function renderizar(lista) {
-            document.getElementById('container').innerHTML = lista.map(n => `
+            document.getElementById('container').innerHTML = d.noticias.map(n => `
                 <div class="card">
                     <span class="badge">${n.tipo || 'Ensino'}</span>
                     <h2>${n.titulo}</h2>
@@ -49,16 +50,10 @@
                         <div class="stat-box"><strong>RESPOSTA</strong><br>${n.resposta}</div>
                         <div class="stat-box"><strong>TAXA</strong><br>${n.taxa}€</div>
                     </div>
-                    <div style="text-align: right; margin-bottom: 10px;">Score: <strong>${n.score}/100</strong></div>
+                    <div style="text-align: right; font-weight: bold;">Score: ${n.score}/100</div>
                     <a href="https://wa.me/244976195484" class="btn-detalhes">Assistência SJ Travel ></a>
                 </div>`).join('');
-        }
-
-        function ordenarPorPreco() {
-            const filtro = document.getElementById('filtroPreco').value;
-            const ordenado = filtro === 'baratas' ? [...dadosGlobais].sort((a,b) => a.propina - b.propina) : dadosGlobais;
-            renderizar(ordenado);
-        }
+        });
     </script>
 </body>
 </html>
