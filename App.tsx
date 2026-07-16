@@ -61,3 +61,61 @@ export default function App() {
     </div>
   );
 }
+
+import React, { useState } from 'react';
+
+function App() {
+  const [isAdmin, setIsAdmin] = useState(false);
+  const [password, setPassword] = useState("");
+
+  // Função simples para simular o login
+  const handleLogin = (e) => {
+    e.preventDefault();
+    if (password === "admin123") { // Define aqui a tua senha
+      setIsAdmin(true);
+    } else {
+      alert("Senha incorreta!");
+    }
+  };
+
+  if (!isAdmin) {
+    // Tela de Login (o teu login.html)
+    return (
+      <div className="login-container">
+        <h1>Acesso Restrito</h1>
+        <form onSubmit={handleLogin}>
+          <input 
+            type="password" 
+            placeholder="Senha de Admin" 
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required 
+          />
+          <button type="submit" className="botao">Entrar</button>
+        </form>
+      </div>
+    );
+  }
+
+  // Tela do Painel Admin (o teu painel.html)
+  return (
+    <div className="painel-container">
+      <h1>Painel Admin - Portugal Uni Finder</h1>
+      <form onSubmit={(e) => e.preventDefault()}>
+        <input name="titulo" placeholder="Nome da Univ" required /><br />
+        <input name="tipo" placeholder="Ensino (Pública/Privada)" required /><br />
+        <input name="propina" placeholder="Valor Propina (€)" type="number" required /><br />
+        <input name="resposta" placeholder="Tempo de Resposta" required /><br />
+        <input name="score" placeholder="Acceptance Score (0-100)" type="number" required /><br />
+        <button type="submit">Publicar no Site</button>
+      </form>
+      <hr />
+      <h3>Robô Sync (Automação)</h3>
+      <button onClick={() => alert('O Robô Sync foi ativado!')} style={{background: 'blue', color: 'white'}}>
+        🔍 Iniciar Busca Automática
+      </button>
+    </div>
+  );
+}
+
+export default App;
