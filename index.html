@@ -12,6 +12,7 @@
         <p>Encontre a sua Universidade em Portugal</p>
     </div>
 
+    <!-- Filtros -->
     <div class="filtro-box">
         <h3>🔍 FILTROS AVANÇADOS</h3>
         <label>PROPINA MÁXIMA (<span id="valPropina">8000</span>€)</label>
@@ -19,21 +20,18 @@
         <button onclick="alert('Robô Sync Ativado!')" class="btn-robo">🔍 Iniciar Robô Sync</button>
     </div>
 
+    <!-- Notificações Dinâmicas -->
     <div id="blocoNotificacoes" class="card notif-card">
         <h3>🔔 ALERTAS DO SINCRONIZADOR DIÁRIO</h3>
         <div class="push-box">
-            <strong>🔔 SISTEMA DE NOTIFICAÇÕES PUSH ATIVO</strong>
-            <p>Receba alertas sobre prazos críticos e novas vagas.</p>
+            <p id="display-alerta">Carregando novidades...</p>
             <button class="btn-detalhes" onclick="esconderNotificacoes()">Ligar Push</button>
-            <button class="btn-detalhes" style="background: #2563eb; margin-top: 10px;" onclick="esconderNotificacoes()">Testar Alerta Push ⭐</button>
-        </div>
-        <div class="alert-item">
-            <p><strong>Atualização:</strong> Propina ULisboa ajustada para 2941€/ano.</p>
         </div>
     </div>
 
     <div id="container"></div>
 
+    <!-- Rodapé -->
     <footer>
         <div class="footer-links">
             <a href="#" onclick="window.location.reload()">Explorar</a> | 
@@ -44,39 +42,43 @@
     </footer>
 
     <script>
-        // Lógica de Ocultação das Notificações
-        function esconderNotificacoes() {
-            document.getElementById('blocoNotificacoes').style.display = 'none';
-        }
-
-        // Consultor IA (WhatsApp SJ Travel)
-        function abrirConsultorIA() {
-            window.open('https://wa.me/244976195484', '_blank');
-        }
-
-        // Comparador Inteligente (Ordena por Score/Relevância)
-        function executarComparador() {
-            dados.sort((a, b) => b.score - a.score);
-            renderizar(dados);
-        }
-
-        // Base de Dados Completa (30 itens)
         const dados = [
             { titulo: "Universidade do Porto", tipo: "Pública", propina: "3500", score: "85" },
             { titulo: "ISAG - Business School", tipo: "Privada", propina: "3450", score: "90" },
             { titulo: "Bolsa de Mérito - U. Porto", tipo: "Bolsa", propina: "0", score: "98" },
-            { titulo: "UC Isolada: Inteligência Artificial", tipo: "Cadeira Isolada", propina: "700", score: "98" }
-            // ... (Podes adicionar o resto dos teus 30 itens aqui)
+            { titulo: "UC Isolada: IA", tipo: "Cadeira Isolada", propina: "700", score: "98" }
+            // ... (Continua a tua lista de 30 itens aqui)
         ];
 
+        // Lógica de Notificações Aleatórias
+        const alertas = ["Nova fase no ISAG aberta!", "Propina ULisboa atualizada.", "Bolsas de Mérito disponíveis."];
+        document.getElementById('display-alerta').innerText = alertas[Math.floor(Math.random() * alertas.length)];
+
+        function esconderNotificacoes() { document.getElementById('blocoNotificacoes').style.display = 'none'; }
+        
+        function abrirConsultorIA() { window.open('https://wa.me/244976195484', '_blank'); }
+
+        function executarComparador() { 
+            dados.sort((a, b) => b.score - a.score); 
+            renderizar(dados); 
+        }
+
         function renderizar(lista) {
-            document.getElementById('container').innerHTML = lista.map(n => `
+            document.getElementById('container').innerHTML = lista.map((n, i) => `
                 <div class="card">
                     <span class="badge">${n.tipo}</span>
                     <h2>${n.titulo}</h2>
                     <p>Propina: ${n.propina}€ | Score: ${n.score}/100</p>
+                    <button class="btn-detalhes" onclick="abrirDetalhes(${i})">Ver Detalhes e Contacto</button>
                 </div>`).join('');
         }
+
+        function abrirDetalhes(i) {
+            const n = dados[i];
+            alert(`DETALHES: ${n.titulo}\nTipo: ${n.tipo}\nPropina: ${n.propina}€\n\nContactar responsáveis agora:`);
+            abrirConsultorIA();
+        }
+
         renderizar(dados);
     </script>
 </body>
