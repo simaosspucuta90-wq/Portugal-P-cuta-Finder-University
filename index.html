@@ -3,24 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <title>Portugal Uni Finder AI</title>
-    <link rel="stylesheet" href="style.css">
     <style>
-        .header-container { text-align: center; margin: 20px 0; }
-        .logo { max-width: 150px; height: auto; border-radius: 8px; }
-        nav { display: flex; justify-content: center; gap: 10px; margin-bottom: 20px; align-items: center; }
-        .card { background: #161b22; padding: 15px; border-radius: 10px; margin: 10px; color: white; border: 1px solid #30363d; }
-        .btn { display: block; background: #25d366; color: white; padding: 10px; text-align: center; text-decoration: none; border-radius: 5px; margin-top: 10px; font-weight: bold; }
+        body { font-family: sans-serif; background: #f4f7f6; padding: 20px; }
+        .header-container { text-align: center; margin-bottom: 20px; }
+        .logo { max-width: 150px; border-radius: 8px; }
+        .card { background: white; border: 1px solid #e0e0e0; border-radius: 12px; padding: 20px; margin-bottom: 20px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+        .stats { display: flex; justify-content: space-between; margin: 20px 0; border-top: 1px solid #eee; border-bottom: 1px solid #eee; padding: 10px 0; }
+        .stat-box { text-align: center; font-size: 0.9em; }
+        .badge { background: #f0f0ff; color: #5c5cff; padding: 4px 8px; border-radius: 4px; font-size: 0.8em; font-weight: bold; }
+        .btn-detalhes { background: #1a2b4c; color: white; padding: 10px; border-radius: 6px; text-decoration: none; display: block; text-align: center; font-weight: bold; }
+        nav { display: flex; justify-content: center; gap: 10px; margin-bottom: 20px; }
     </style>
 </head>
 <body>
     <div class="header-container">
-        <img src="logo.png" alt="Logo SJ Travel" class="logo">
+        <img src="logo.png" alt="Logo" class="logo">
         <h1>Portugal Uni Finder AI</h1>
     </div>
 
     <nav>
         <button onclick="window.location.href='/'">Explorar</button>
-        <select id="filtroPreco" onchange="ordenarPorPreco()" style="padding: 8px; border-radius: 5px;">
+        <select id="filtroPreco" onchange="ordenarPorPreco()">
             <option value="todos">Ordenar por Preço</option>
             <option value="baratas">Propinas mais baratas</option>
         </select>
@@ -39,21 +42,22 @@
         function renderizar(lista) {
             document.getElementById('container').innerHTML = lista.map(n => `
                 <div class="card">
+                    <span class="badge">${n.tipo || 'Ensino'}</span>
                     <h2>${n.titulo}</h2>
-                    <p>${n.descricao}</p>
-                    <p>Propina: <b>${n.propina}€</b> | Visto: ${n.tempo_visto}</p>
-                    <a href="https://wa.me/244976195484" class="btn">Assistência SJ Travel</a>
+                    <div class="stats">
+                        <div class="stat-box"><strong>PROPINA</strong><br>${n.propina}€</div>
+                        <div class="stat-box"><strong>RESPOSTA</strong><br>${n.resposta}</div>
+                        <div class="stat-box"><strong>TAXA</strong><br>${n.taxa}€</div>
+                    </div>
+                    <div style="text-align: right; margin-bottom: 10px;">Score: <strong>${n.score}/100</strong></div>
+                    <a href="https://wa.me/244976195484" class="btn-detalhes">Assistência SJ Travel ></a>
                 </div>`).join('');
         }
 
         function ordenarPorPreco() {
             const filtro = document.getElementById('filtroPreco').value;
-            if (filtro === 'baratas') {
-                const ordenado = [...dadosGlobais].sort((a, b) => a.propina - b.propina);
-                renderizar(ordenado);
-            } else {
-                renderizar(dadosGlobais);
-            }
+            const ordenado = filtro === 'baratas' ? [...dadosGlobais].sort((a,b) => a.propina - b.propina) : dadosGlobais;
+            renderizar(ordenado);
         }
     </script>
 </body>
