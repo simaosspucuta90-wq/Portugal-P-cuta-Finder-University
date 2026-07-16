@@ -12,7 +12,7 @@
         <p>Encontre a sua Universidade em Portugal</p>
     </div>
 
-    <!-- Filtros e Robô Sync -->
+    <!-- Filtros -->
     <div class="filtro-box">
         <h3>🔍 FILTROS AVANÇADOS</h3>
         <label>PROPINA MÁXIMA (<span id="valPropina">8000</span>€)</label>
@@ -20,20 +20,21 @@
         <button onclick="alert('Robô Sync Ativado!')" class="btn-robo">🔍 Iniciar Robô Sync</button>
     </div>
 
-    <!-- Sistema de Notificações -->
-    <div class="card notif-card">
+    <!-- Notificações Dinâmicas -->
+    <div id="blocoNotificacoes" class="card notif-card">
         <h3>🔔 ALERTAS DO SINCRONIZADOR DIÁRIO</h3>
         <div class="push-box">
             <strong>🔔 SISTEMA DE NOTIFICAÇÕES PUSH ATIVO</strong>
-            <p>Receba alertas sobre prazos e novas vagas.</p>
-            <button class="btn-detalhes">Ligar Push</button>
-            <button class="btn-detalhes" style="background: #2563eb;">Testar Alerta Push ⭐</button>
+            <p>Receba alertas sobre prazos críticos e novas vagas.</p>
+            <button class="btn-detalhes" onclick="esconderNotificacoes()">Ligar Push</button>
+            <button class="btn-detalhes" style="background: #2563eb; margin-top: 10px;" onclick="esconderNotificacoes()">Testar Alerta Push ⭐</button>
         </div>
         <div class="alert-item">
             <p><strong>Atualização:</strong> Propina ULisboa ajustada para 2941€/ano.</p>
         </div>
     </div>
 
+    <!-- Lista de Vagas -->
     <div id="container"></div>
 
     <!-- Rodapé -->
@@ -44,13 +45,18 @@
         <p><strong>Portugal Uni Finder AI</strong> © 2026. Desenvolvido por Simão Sérgio Sungo Púcuta.</p>
     </footer>
 
-    <!-- Script de dados e lógica -->
     <script>
-        // Esta base de dados contém as 30 entradas consolidadas (Universidades, Cadeiras e Bolsas)
+        // Lógica para esconder o bloco de notificações
+        function esconderNotificacoes() {
+            document.getElementById('blocoNotificacoes').style.display = 'none';
+        }
+
+        // Base de dados completa (30 itens: Universidades, Cadeiras e Bolsas)
         const dados = [ 
-            /* ... (A tua lista consolidada de 30 itens entra aqui) ... */ 
+            /* Insere aqui os teus 30 itens */ 
         ];
-        // ... Lógica de renderização ...
+
+        // Lógica de renderização dos cartões...
     </script>
 </body>
 </html>
