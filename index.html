@@ -12,26 +12,33 @@
         <p>Encontre a sua Universidade em Portugal</p>
     </div>
 
-    <!-- Filtros -->
-    <div class="filtro-box">
-        <h3>🔍 FILTROS AVANÇADOS</h3>
-        <label>PROPINA MÁXIMA (<span id="valPropina">8000</span>€)</label>
-        <input type="range" min="2000" max="10000" value="8000" style="width: 100%;" oninput="document.getElementById('valPropina').innerText = this.value">
-        <button onclick="alert('Robô Sync Ativado!')" class="btn-robo">🔍 Iniciar Robô Sync</button>
+    <!-- Filtro Versátil (Expansível/Retrátil) -->
+    <div class="card filtro-card">
+        <div class="filtro-header" onclick="toggleFiltros()">
+            <h3>🔍 FILTROS AVANÇADOS</h3>
+            <span id="setaFiltro">▼</span>
+        </div>
+        <div id="corpoFiltros" style="display: none;">
+            <label>CIDADE</label>
+            <select><option>Todas</option><option>Lisboa</option><option>Porto</option></select>
+            <label>PROPINA ANUAL (2.000€ - 10.000€)</label>
+            <input type="range" min="2000" max="10000" style="width: 100%;">
+            <div class="checkbox-group">
+                <label><input type="checkbox"> Facilidades CPLP</label>
+                <label><input type="checkbox"> Unidades Curriculares Isoladas</label>
+            </div>
+        </div>
     </div>
 
     <!-- Notificações Dinâmicas -->
     <div id="blocoNotificacoes" class="card notif-card">
-        <h3>🔔 ALERTAS DO SINCRONIZADOR DIÁRIO</h3>
-        <div class="push-box">
-            <p id="display-alerta">Carregando novidades...</p>
-            <button class="btn-detalhes" onclick="esconderNotificacoes()">Ligar Push</button>
-        </div>
+        <h3>🔔 ALERTAS DO SINCRONIZADOR</h3>
+        <p id="display-alerta">Carregando novidades...</p>
+        <button class="btn-detalhes" onclick="esconderNotificacoes()">Ligar Push</button>
     </div>
 
     <div id="container"></div>
 
-    <!-- Rodapé -->
     <footer>
         <div class="footer-links">
             <a href="#" onclick="window.location.reload()">Explorar</a> | 
@@ -43,26 +50,18 @@
 
     <script>
         const dados = [
-            { titulo: "Universidade do Porto", tipo: "Pública", propina: "3500", score: "85" },
-            { titulo: "ISAG - Business School", tipo: "Privada", propina: "3450", score: "90" },
-            { titulo: "Bolsa de Mérito - U. Porto", tipo: "Bolsa", propina: "0", score: "98" },
-            { titulo: "UC Isolada: IA", tipo: "Cadeira Isolada", propina: "700", score: "98" }
-            // ... (Continua a tua lista de 30 itens aqui)
+            { titulo: "Universidade do Porto", tipo: "Pública", propina: "3500", score: "95", info: "Engenharia de topo." },
+            { titulo: "Bolsa de Mérito CPLP", tipo: "Bolsa", propina: "0", score: "98", info: "Isenção total CPLP." },
+            { titulo: "UC Isolada: IA", tipo: "Cadeira Isolada", propina: "650", score: "92", info: "Certificado emitido." }
         ];
 
-        // Lógica de Notificações Aleatórias
-        const alertas = ["Nova fase no ISAG aberta!", "Propina ULisboa atualizada.", "Bolsas de Mérito disponíveis."];
-        document.getElementById('display-alerta').innerText = alertas[Math.floor(Math.random() * alertas.length)];
-
-        function esconderNotificacoes() { document.getElementById('blocoNotificacoes').style.display = 'none'; }
-        
-        function abrirConsultorIA() { window.open('https://wa.me/244976195484', '_blank'); }
-
-        function executarComparador() { 
-            dados.sort((a, b) => b.score - a.score); 
-            renderizar(dados); 
+        // Lógica de Filtro
+        function toggleFiltros() {
+            const corpo = document.getElementById('corpoFiltros');
+            corpo.style.display = corpo.style.display === 'none' ? 'block' : 'none';
         }
 
+        // Lógica de Renderização e Detalhes
         function renderizar(lista) {
             document.getElementById('container').innerHTML = lista.map((n, i) => `
                 <div class="card">
@@ -75,11 +74,16 @@
 
         function abrirDetalhes(i) {
             const n = dados[i];
-            alert(`DETALHES: ${n.titulo}\nTipo: ${n.tipo}\nPropina: ${n.propina}€\n\nContactar responsáveis agora:`);
+            alert(`DETALHES: ${n.titulo}\n${n.info}\n\nContactar responsáveis agora:`);
             abrirConsultorIA();
         }
 
+        function abrirConsultorIA() { window.open('https://wa.me/244976195484', '_blank'); }
+
+        function executarComparador() { dados.sort((a, b) => b.score - a.score); renderizar(dados); }
+
         renderizar(dados);
+        document.getElementById('display-alerta').innerText = "Nova fase de candidaturas aberta!";
     </script>
 </body>
 </html>
