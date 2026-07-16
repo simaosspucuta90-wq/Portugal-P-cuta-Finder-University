@@ -12,7 +12,6 @@
         <p>Encontre a sua Universidade em Portugal</p>
     </div>
 
-    <!-- Filtros -->
     <div class="filtro-box">
         <h3>🔍 FILTROS AVANÇADOS</h3>
         <label>PROPINA MÁXIMA (<span id="valPropina">8000</span>€)</label>
@@ -20,7 +19,6 @@
         <button onclick="alert('Robô Sync Ativado!')" class="btn-robo">🔍 Iniciar Robô Sync</button>
     </div>
 
-    <!-- Notificações Dinâmicas -->
     <div id="blocoNotificacoes" class="card notif-card">
         <h3>🔔 ALERTAS DO SINCRONIZADOR DIÁRIO</h3>
         <div class="push-box">
@@ -34,29 +32,52 @@
         </div>
     </div>
 
-    <!-- Lista de Vagas -->
     <div id="container"></div>
 
-    <!-- Rodapé -->
     <footer>
         <div class="footer-links">
-            <a href="#">Explorar</a> | <a href="#">Consultor IA</a> | <a href="#">Comparador</a> | <a href="#" style="color: #4ade80;">Admin</a>
+            <a href="#" onclick="window.location.reload()">Explorar</a> | 
+            <a href="#" onclick="abrirConsultorIA()">Consultor IA</a> | 
+            <a href="#" onclick="executarComparador()">Comparador</a>
         </div>
         <p><strong>Portugal Uni Finder AI</strong> © 2026. Desenvolvido por Simão Sérgio Sungo Púcuta.</p>
     </footer>
 
     <script>
-        // Lógica para esconder o bloco de notificações
+        // Lógica de Ocultação das Notificações
         function esconderNotificacoes() {
             document.getElementById('blocoNotificacoes').style.display = 'none';
         }
 
-        // Base de dados completa (30 itens: Universidades, Cadeiras e Bolsas)
-        const dados = [ 
-            /* Insere aqui os teus 30 itens */ 
+        // Consultor IA (WhatsApp SJ Travel)
+        function abrirConsultorIA() {
+            window.open('https://wa.me/244976195484', '_blank');
+        }
+
+        // Comparador Inteligente (Ordena por Score/Relevância)
+        function executarComparador() {
+            dados.sort((a, b) => b.score - a.score);
+            renderizar(dados);
+        }
+
+        // Base de Dados Completa (30 itens)
+        const dados = [
+            { titulo: "Universidade do Porto", tipo: "Pública", propina: "3500", score: "85" },
+            { titulo: "ISAG - Business School", tipo: "Privada", propina: "3450", score: "90" },
+            { titulo: "Bolsa de Mérito - U. Porto", tipo: "Bolsa", propina: "0", score: "98" },
+            { titulo: "UC Isolada: Inteligência Artificial", tipo: "Cadeira Isolada", propina: "700", score: "98" }
+            // ... (Podes adicionar o resto dos teus 30 itens aqui)
         ];
 
-        // Lógica de renderização dos cartões...
+        function renderizar(lista) {
+            document.getElementById('container').innerHTML = lista.map(n => `
+                <div class="card">
+                    <span class="badge">${n.tipo}</span>
+                    <h2>${n.titulo}</h2>
+                    <p>Propina: ${n.propina}€ | Score: ${n.score}/100</p>
+                </div>`).join('');
+        }
+        renderizar(dados);
     </script>
 </body>
 </html>
