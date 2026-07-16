@@ -8,6 +8,7 @@ export default function App() {
 
   const handleAdminLogin = (e: React.FormEvent) => {
     e.preventDefault();
+    // A tua palavra-passe de admin
     if (adminPassword === "Mrfiladagoda2") {
       setIsAdminLoggedIn(true);
     } else {
@@ -17,14 +18,16 @@ export default function App() {
 
   return (
     <div className="min-h-screen flex flex-col bg-slate-50">
+      {/* Cabeçalho */}
       <header className="bg-[#1a365d] text-white p-4 shadow-md">
         <div className="text-xl font-bold mb-2 text-center">Portugal Púcuta Finder University</div>
-        <nav className="flex justify-center gap-4 overflow-x-auto text-sm border-t border-blue-800 pt-2">
+        <nav className="flex justify-center gap-4 text-sm border-t border-blue-800 pt-2">
           <button onClick={() => setActiveTab("explorar")}>Explorar</button>
           <button onClick={() => setActiveTab("admin")}>Admin</button>
         </nav>
       </header>
 
+      {/* Conteúdo */}
       <main className="flex-1 p-4">
         {activeTab === "explorar" && (
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -32,6 +35,8 @@ export default function App() {
               <div key={index} className="bg-white p-4 rounded-lg shadow-md border-l-4 border-blue-600">
                 <h3 className="font-bold text-lg text-slate-800">{item.titulo}</h3>
                 <p className="text-sm text-slate-600">Tipo: {item.tipo}</p>
+                <p className="text-sm font-semibold text-blue-700">Propina: {item.propina}€</p>
+                <p className="text-xs text-slate-400">Score: {item.score}/100 | Resposta: {item.resposta}</p>
               </div>
             ))}
           </div>
@@ -51,15 +56,16 @@ export default function App() {
         )}
 
         {activeTab === "admin" && isAdminLoggedIn && (
-          <div className="max-w-md mx-auto bg-white p-6 rounded shadow">
+          <div className="max-w-md mx-auto bg-white p-6 rounded shadow text-center">
             <h2 className="font-bold mb-4">Painel Admin - Portugal Uni Finder</h2>
             <button onClick={() => alert('Robô Sync ativado!')} className="bg-blue-600 text-white p-2 w-full">
-              🔍 Iniciar Busca Automática
+              🔍 Iniciar Busca Automática de Vagas
             </button>
           </div>
         )}
       </main>
 
+      {/* Rodapé */}
       <footer className="mt-auto bg-slate-800 text-white p-4 text-center text-xs">
         <p>Copyright © 2026 Portugal Púcuta Finder University - Desenvolvido por Simão Sérgio Sungo Púcuta.</p>
       </footer>
