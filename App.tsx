@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-// Importa o teu ficheiro de dados para ser lido pelo App
 import dados from './dados.json'; 
 
 export default function App() {
@@ -29,7 +28,7 @@ export default function App() {
         </nav>
       </header>
 
-      {/* Conteúdo Principal Dinâmico */}
+      {/* Conteúdo Principal com Leitura de Dados */}
       <main className="flex-1 p-4">
         {activeTab === "explorar" && (
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -55,7 +54,7 @@ export default function App() {
         )}
       </main>
 
-      {/* Rodapé com a tua autoria e novo Branding */}
+      {/* Rodapé com Branding e Autoria */}
       <footer className="mt-auto bg-slate-800 text-white p-4 text-center text-xs">
         <p>Copyright © 2026 Portugal Púcuta Finder University - Desenvolvido por Simão Sérgio Sungo Púcuta. Todos os direitos reservados.</p>
       </footer>
