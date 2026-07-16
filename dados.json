@@ -1,3 +1,34 @@
 {
-  "noticias": []
+  "noticias": [
+    { "titulo": "Universidade do Porto", "tipo": "Pública", "propina": "3500", "resposta": "20 dias", "taxa": "100", "score": "85", "mapa": "https://www.google.com/maps/embed?pb=..." },
+    { "titulo": "ISAG - Business School", "tipo": "Privada", "propina": "3450", "resposta": "7 dias", "taxa": "120", "score": "90", "mapa": "https://www.google.com/maps/embed?pb=..." },
+    { "titulo": "Universidade de Lisboa", "tipo": "Pública", "propina": "3000", "resposta": "25 dias", "taxa": "150", "score": "88", "mapa": "https://www.google.com/maps/embed?pb=..." },
+    { "titulo": "Universidade de Coimbra", "tipo": "Pública", "propina": "2800", "resposta": "15 dias", "taxa": "90", "score": "92", "mapa": "https://www.google.com/maps/embed?pb=..." },
+    { "titulo": "Universidade da Beira Interior", "tipo": "Pública", "propina": "2500", "resposta": "10 dias", "taxa": "80", "score": "80", "mapa": "https://www.google.com/maps/embed?pb=..." },
+    { "titulo": "Universidade de Aveiro", "tipo": "Pública", "propina": "3200", "resposta": "18 dias", "taxa": "110", "score": "84", "mapa": "https://www.google.com/maps/embed?pb=..." },
+    { "titulo": "Universidade do Minho", "tipo": "Pública", "propina": "3100", "resposta": "14 dias", "taxa": "105", "score": "86", "mapa": "https://www.google.com/maps/embed?pb=..." },
+    { "titulo": "Universidade do Algarve", "tipo": "Pública", "propina": "2900", "resposta": "12 dias", "taxa": "95", "score": "78", "mapa": "https://www.google.com/maps/embed?pb=..." },
+    { "titulo": "Universidade Lusófona", "tipo": "Privada", "propina": "4500", "resposta": "5 dias", "taxa": "200", "score": "82", "mapa": "https://www.google.com/maps/embed?pb=..." },
+    { "titulo": "Universidade Autónoma de Lisboa", "tipo": "Privada", "propina": "4200", "resposta": "6 dias", "taxa": "180", "score": "81", "mapa": "https://www.google.com/maps/embed?pb=..." },
+    { "titulo": "UC Isolada: Direito Internacional", "tipo": "Cadeira Isolada", "propina": "500", "resposta": "3 dias", "taxa": "50", "score": "95", "mapa": "https://www.google.com/maps/embed?pb=..." },
+    { "titulo": "UC Isolada: Gestão de Projetos", "tipo": "Cadeira Isolada", "propina": "450", "resposta": "3 dias", "taxa": "50", "score": "94", "mapa": "https://www.google.com/maps/embed?pb=..." },
+    { "titulo": "UC Isolada: Marketing Digital", "tipo": "Cadeira Isolada", "propina": "400", "resposta": "2 dias", "taxa": "40", "score": "96", "mapa": "https://www.google.com/maps/embed?pb=..." },
+    { "titulo": "UC Isolada: Eng. de Software", "tipo": "Cadeira Isolada", "propina": "600", "resposta": "4 dias", "taxa": "60", "score": "92", "mapa": "https://www.google.com/maps/embed?pb=..." },
+    { "titulo": "UC Isolada: Contabilidade Avançada", "tipo": "Cadeira Isolada", "propina": "550", "resposta": "3 dias", "taxa": "55", "score": "93", "mapa": "https://www.google.com/maps/embed?pb=..." },
+    { "titulo": "UC Isolada: Ética e Deontologia", "tipo": "Cadeira Isolada", "propina": "350", "resposta": "2 dias", "taxa": "30", "score": "90", "mapa": "https://www.google.com/maps/embed?pb=..." },
+    { "titulo": "UC Isolada: Empreendedorismo", "tipo": "Cadeira Isolada", "propina": "450", "resposta": "3 dias", "taxa": "45", "score": "91", "mapa": "https://www.google.com/maps/embed?pb=..." },
+    { "titulo": "UC Isolada: Psicologia do Consumidor", "tipo": "Cadeira Isolada", "propina": "500", "resposta": "3 dias", "taxa": "50", "score": "89", "mapa": "https://www.google.com/maps/embed?pb=..." },
+    { "titulo": "UC Isolada: Negócios Internacionais", "tipo": "Cadeira Isolada", "propina": "550", "resposta": "4 dias", "taxa": "55", "score": "92", "mapa": "https://www.google.com/maps/embed?pb=..." },
+    { "titulo": "UC Isolada: Inteligência Artificial", "tipo": "Cadeira Isolada", "propina": "700", "resposta": "5 dias", "taxa": "70", "score": "98", "mapa": "https://www.google.com/maps/embed?pb=..." },
+    { "titulo": "Bolsa de Mérito - U. Porto", "tipo": "Bolsa", "propina": "0", "resposta": "30 dias", "taxa": "0", "score": "98", "mapa": "https://www.google.com/maps/embed?pb=..." },
+    { "titulo": "Bolsa CPLP - Licenciatura", "tipo": "Bolsa", "propina": "1500", "resposta": "45 dias", "taxa": "50", "score": "95", "mapa": "https://www.google.com/maps/embed?pb=..." },
+    { "titulo": "Bolsa Ação Social - Coimbra", "tipo": "Bolsa", "propina": "500", "resposta": "40 dias", "taxa": "0", "score": "92", "mapa": "https://www.google.com/maps/embed?pb=..." },
+    { "titulo": "Bolsa Talento Internacional", "tipo": "Bolsa", "propina": "1000", "resposta": "20 dias", "taxa": "20", "score": "90", "mapa": "https://www.google.com/maps/embed?pb=..." },
+    { "titulo": "Bolsa Investigação - Mestrado", "tipo": "Bolsa", "propina": "0", "resposta": "60 dias", "taxa": "0", "score": "99", "mapa": "https://www.google.com/maps/embed?pb=..." },
+    { "titulo": "Bolsa Apoio Alojamento", "tipo": "Bolsa", "propina": "2000", "resposta": "30 dias", "taxa": "0", "score": "88", "mapa": "https://www.google.com/maps/embed?pb=..." },
+    { "titulo": "Bolsa CPLP - Mestrado", "tipo": "Bolsa", "propina": "1200", "resposta": "40 dias", "taxa": "50", "score": "94", "mapa": "https://www.google.com/maps/embed?pb=..." },
+    { "titulo": "Bolsa Excelência - ISAG", "tipo": "Bolsa", "propina": "800", "resposta": "20 dias", "taxa": "0", "score": "96", "mapa": "https://www.google.com/maps/embed?pb=..." },
+    { "titulo": "Bolsa Estudo - CPLP/Angola", "tipo": "Bolsa", "propina": "1100", "resposta": "35 dias", "taxa": "30", "score": "93", "mapa": "https://www.google.com/maps/embed?pb=..." },
+    { "titulo": "Bolsa Doutoramento", "tipo": "Bolsa", "propina": "0", "resposta": "90 dias", "taxa": "0", "score": "100", "mapa": "https://www.google.com/maps/embed?pb=..." }
+  ]
 }
